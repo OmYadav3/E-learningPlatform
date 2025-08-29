@@ -1,13 +1,12 @@
 import './App.css'
+import Login from './pages/Login'
 
 function App() {
 
   return (
-    <>
-     <h1>
-      E-LearningPlatform
-     </h1>
-    </>
+    <main>
+     <Login/>
+    </main>
   )
 }
 
