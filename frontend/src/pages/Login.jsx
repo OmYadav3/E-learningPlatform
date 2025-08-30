@@ -25,21 +25,20 @@ const Login = () => {
 
     const changeInputHandler = useCallback((e, type) => {
         const { name, value } = e.target;
-        if (type === signupInput) {
-            setSignupInput({ ...signupInput, [name]: value });
+        if (type === "signup") {
+            setSignupInput((prev) => ({ ...prev, [name]: value }));
         } else {
-            setLoginInput({ ...loginInput, [name]: value });
+            setLoginInput((prev) => ({ ...prev, [name]: value }));
         }
     }, []);
 
     const handleRegistration = useCallback(
-      (type) => {
-         const inputData = type==="signup" ? signupInput : loginInput;
-         console.log(inputData)
-      },
-      []
-    )
-
+        (type) => {
+            const inputData = type === "signup" ? signupInput : loginInput;
+            console.log(inputData);
+        },
+        [signupInput, loginInput]
+    );
 
     return (
         <div className="flex w-full  items-center justify-center">
@@ -66,7 +65,9 @@ const Login = () => {
                                         name="name"
                                         value={signupInput.name}
                                         placeholder="Eg. Peter"
-                                        onChange={(e) => changeInputHandler(e,"signup")}
+                                        onChange={(e) =>
+                                            changeInputHandler(e, "signup")
+                                        }
                                         required="true"
                                     />
                                 </div>
@@ -79,7 +80,9 @@ const Login = () => {
                                         name="email"
                                         value={signupInput.email}
                                         placeholder="Eg. example123@gmail.com"
-                                        onChange={(e) => changeInputHandler(e,"signup")}
+                                        onChange={(e) =>
+                                            changeInputHandler(e, "signup")
+                                        }
                                         required="true"
                                     />
                                 </div>
@@ -91,12 +94,18 @@ const Login = () => {
                                         name="password"
                                         value={signupInput.password}
                                         type="password"
-                                        onChange={(e) => changeInputHandler(e,"signup")}
+                                        onChange={(e) =>
+                                            changeInputHandler(e, "signup")
+                                        }
                                     />
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button onClick={() => handleRegistration("signup")}>Signup</Button>
+                                <Button
+                                    onClick={() => handleRegistration("signup")}
+                                >
+                                    Signup
+                                </Button>
                             </CardFooter>
                         </Card>
                     </TabsContent>
@@ -119,7 +128,9 @@ const Login = () => {
                                         name="email"
                                         value={loginInput.email}
                                         placeholder="Eg. example123@gmail.com"
-                                        onChange={(e) => changeInputHandler(e,"login")}
+                                        onChange={(e) =>
+                                            changeInputHandler(e, "login")
+                                        }
                                         required="true"
                                     />
                                 </div>
@@ -131,12 +142,18 @@ const Login = () => {
                                         type="password"
                                         name="password"
                                         value={loginInput.password}
-                                        onChange={(e) => changeInputHandler(e,"login")}
+                                        onChange={(e) =>
+                                            changeInputHandler(e, "login")
+                                        }
                                     />
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button  onClick={() => handleRegistration("login")}>Login</Button>
+                                <Button
+                                    onClick={() => handleRegistration("login")}
+                                >
+                                    Login
+                                </Button>
                             </CardFooter>
                         </Card>
                     </TabsContent>
